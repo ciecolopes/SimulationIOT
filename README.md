@@ -18,14 +18,22 @@ O projeto serve como um pipeline abrangente de transmissão de dados em tempo re
 - 🛠️ **AWS Glue**: Serviço de integração de dados sem servidor para automatizar operações ETL e tarefas de transformação de dados.
 - 🛠️ **AWS Athena**: Serviço de consulta interativa para analisar dados armazenados no Amazon S3 usando consultas SQL padrão.
 - 🛠️ **AWS Redshift**: Solução de data warehouse totalmente gerenciada, otimizada para análises de alto desempenho e consultas complexas.
-- 🛠️ **AWS QuickSight**: Ferramenta de inteligência de negócios para visualizar e explorar dados com dashboards interativos e insights impulsionados por ML.
+- 🛠️ **Power BI, Looker Studio, QuickSight**: Ferramenta de inteligência de negócios para visualizar e explorar dados com dashboards interativos e insights impulsionados por ML.
 
 ## 🌟 Exploração Detalhada
 
 1. **Ingestão de Dados**: Ingestão em tempo real de dados de dispositivos IoT (simulador em python) no Apache Kafka para processamento.
 2. **Processamento de Dados**: Utilização do Apache Spark para processamento e análise em tempo real dos fluxos de dados.
 3. **Armazenamento de Dados**: Armazenamento seguro dos dados processados no AWS S3 e Redshift para análise e visualização posterior.
-4. **Visualização de Dados**: Visualização de insights e tendências usando o Powerbi, looker studio ou até mesmo o AWS QuickSight
+4. **Visualização de Dados**: Visualização de insights e tendências usando o Power Bi, Looker Studio ou até mesmo o AWS QuickSight
+
+## 📊 Análises com Power BI
+
+O Power BI é uma suíte de ferramentas de análise de negócios desenvolvida pela Microsoft, projetada para transformar dados brutos em insights visuais e interativos. Ele permite que os usuários conectem-se a uma ampla variedade de fontes de dados, criem relatórios detalhados e dashboards interativos, e compartilhem esses insights com outras partes interessadas dentro da organização.
+
+## 📊 Análises com Looker Studio
+
+O Looker Studio, anteriormente conhecido como Google Data Studio, é uma plataforma de inteligência de negócios e visualização de dados desenvolvida pelo Google. Ele permite que os usuários criem relatórios e dashboards interativos a partir de diversas fontes de dados, facilitando a análise e a comunicação de insights de maneira visual e intuitiva.
 
 ## 📊 Análises com QuickSight
 
