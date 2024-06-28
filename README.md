@@ -40,17 +40,7 @@ Conjunto de ferramentas de inteligência de negócios de próxima geração que 
 ## 🏙️ Componentes do Sistema
 
 - **docker-compose.yml**: Configura o ambiente hospedando o broker Kafka, Zookeeper e nós Spark.
-- **main.py**: Lida com a geração de dados, criação de tópicos Kafka e processamento inicial de dados.
+- **main.py**: Simulador com a geração de dados, criação de tópicos Kafka (producer.py) e processamento inicial de dados.
+- **producer.py**: Function para criação de tópicos Kafka.
 - **spark-city.py**: Consome dados dos tópicos Kafka e os transmite para os buckets designados do Amazon S3.
 
-## Capturas de Tela 📸
-
-![s (10)](https://github.com/aifreak00/Real-time-Data-Ingestion-for-Smart-City-Streaming/assets/113664560/30f799a7-7ccc-4ddd-ae68-8644a24ff714)
-
-![s (3)](https://github.com/aifreak00/Real-time-Data-Ingestion-for-Smart-City-Streaming/assets/113664560/7346652b-462b-4a56-8b5a-dfc3f2018c44)
-
-![s (6)](https://github.com/aifreak00/Real-time-Data-Ingestion-for-Smart-City-Streaming/assets/113664560/549a0c50-2855-4113-a57f-5b77bdf5a1fa)
-
-![s (12)](https://github.com/aifreak00/Real-time-Data-Ingestion-for-Smart-City-Streaming/assets/113664560/5c333abd-89e4-4a39-a17f-40e121fc1a31)
-
-![s (5)](https://github.com/aifreak00/Real-time-Data-Ingestion-for-Smart-City-Streaming/assets/113664560/c641a81d-4d87-455a-9423-cb562cd483f5)
