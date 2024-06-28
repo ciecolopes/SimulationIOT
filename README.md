@@ -22,7 +22,6 @@ O projeto serve como um pipeline abrangente de transmissão de dados em tempo re
 
 ## 🌟 Exploração Detalhada
 
-
 1. **Ingestão de Dados**: Ingestão em tempo real de dados de dispositivos IoT (simulador em python) no Apache Kafka para processamento.
 2. **Processamento de Dados**: Utilização do Apache Spark para processamento e análise em tempo real dos fluxos de dados.
 3. **Armazenamento de Dados**: Armazenamento seguro dos dados processados no AWS S3 e Redshift para análise e visualização posterior.
@@ -34,7 +33,7 @@ Conjunto de ferramentas de inteligência de negócios de próxima geração que 
 
 ## 🚀 Arquitetura/Fluxos de Trabalho
 
-![313504181-321a5329-edc2-4715-b8d9-77e03a70341e](https://github.com/ciecolopes/SimulationIOT/blob/main/327975779-823698b3-7757-45bb-ad3d-2687e327d368.png)
+![313504181-321a5329-edc2-4715-b8d9-77e03a70341e](https://github.com/ciecolopes/SimulationIOT/blob/main/arquitetura.jpg)
 
 ## 🏙️ Componentes do Sistema
 
@@ -42,4 +41,3 @@ Conjunto de ferramentas de inteligência de negócios de próxima geração que 
 - **main.py**: Simulador com a geração de dados, criação de tópicos Kafka (producer.py) e processamento inicial de dados.
 - **producer.py**: Function para criação de tópicos Kafka.
 - **spark-pedepronto.py**: Consome dados dos tópicos Kafka e os transmite para os buckets designados do Amazon S3.
-
