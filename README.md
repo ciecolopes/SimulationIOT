@@ -25,7 +25,7 @@ O projeto serve como um pipeline abrangente de transmissão de dados em tempo re
 1. **Ingestão de Dados**: Ingestão em tempo real de dados de dispositivos IoT (simulador em python) no Apache Kafka para processamento.
 2. **Processamento de Dados**: Utilização do Apache Spark para processamento e análise em tempo real dos fluxos de dados.
 3. **Armazenamento de Dados**: Armazenamento seguro dos dados processados no AWS S3 e Redshift para análise e visualização posterior.
-4. **Visualização de Dados**: Visualização de insights e tendências usando o AWS QuickSight, permitindo que as partes interessadas tomem decisões baseadas em dados.
+4. **Visualização de Dados**: Visualização de insights e tendências usando o Powerbi, looker studio ou até mesmo o AWS QuickSight
 
 ## 📊 Análises com QuickSight
 
