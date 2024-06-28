@@ -33,7 +33,7 @@ Conjunto de ferramentas de inteligência de negócios de próxima geração que 
 
 ## 🚀 Arquitetura/Fluxos de Trabalho
 
-![313504181-321a5329-edc2-4715-b8d9-77e03a70341e](https://github.com/ciecolopes/SimulationIOT/blob/main/arquitetura.jpg)
+![313504181-321a5329-edc2-4715-b8d9-77e03a70341e](https://github.com/ciecolopes/SimulationIOT/blob/main/arquitetura.jpg?raw=true)
 
 ## 🏙️ Componentes do Sistema
 
