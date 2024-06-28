@@ -15,6 +15,7 @@ O projeto serve como um pipeline abrangente de transmissão de dados em tempo re
 - 🛠️ **Apache Spark**: Um poderoso motor para processamento e análise de dados em tempo real, garantindo geração rápida de insights.
 - 🛠️ **Docker**: Tecnologia de containerização para empacotar e implantar nossos componentes de pipeline com facilidade.
 - 🛠️ **AWS Cloud**: Infraestrutura em nuvem para armazenamento e processamento de dados escaláveis e confiáveis.
+- 🛠️ **AWS Lake Formation**: Serviço gerenciado para criar, gerenciar e proteger data lakes, facilitando a ingestão, catalogação e governança de dado.
 - 🛠️ **AWS Glue**: Serviço de integração de dados sem servidor para automatizar operações ETL e tarefas de transformação de dados.
 - 🛠️ **AWS Athena**: Serviço de consulta interativa para analisar dados armazenados no Amazon S3 usando consultas SQL padrão.
 - 🛠️ **AWS Redshift**: Solução de data warehouse totalmente gerenciada, otimizada para análises de alto desempenho e consultas complexas.
@@ -46,6 +47,7 @@ Conjunto de ferramentas de inteligência de negócios de próxima geração que 
 ## 🏙️ Componentes do Sistema
 
 - **docker-compose.yml**: Configura o ambiente hospedando o broker Kafka, Zookeeper e nós Spark.
+- **config.py**: Access e Secret key para o AWS S3.
 - **main.py**: Simulador com a geração de dados, criação de tópicos Kafka (producer.py) e processamento inicial de dados.
 - **producer.py**: Function para criação de tópicos Kafka.
-- **spark-pedepronto.py**: Consome dados dos tópicos Kafka e os transmite para os buckets designados do Amazon S3.
+- **spark-pedepronto.py**: Consome dados dos tópicos Kafka e os transmite para os buckets designados do AWS S3.
