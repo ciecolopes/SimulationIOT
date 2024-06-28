@@ -33,10 +33,9 @@ O pipeline embarca em uma jornada multifacetada, caracterizada por:
 
 Conjunto de ferramentas de inteligência de negócios de próxima geração que oferece dashboards interativos, análises preditivas e geração de insights impulsionados por ML, permitindo que as partes interessadas visualizem e explorem dados com clareza e agilidade sem precedentes.
 
-
 ## 🚀 Arquitetura/Fluxos de Trabalho
 
-![313504181-321a5329-edc2-4715-b8d9-77e03a70341e](https://github.com/aifreak00/Real-time-Data-Ingestion-for-Smart-City-Streaming/assets/113664560/823698b3-7757-45bb-ad3d-2687e327d368)
+![313504181-321a5329-edc2-4715-b8d9-77e03a70341e](https://github.com/ciecolopes/SimulationIOT/blob/main/327975779-823698b3-7757-45bb-ad3d-2687e327d368.png)
 
 ## 🏙️ Componentes do Sistema
 
