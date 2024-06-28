@@ -10,7 +10,7 @@ O projeto serve como um pipeline abrangente de transmissão de dados em tempo re
 
 ## 🛠️ Componentes Principais
 
-- 📊 **Dispositivos IoT**: Criado um simulador de envio de sensores e dispositivos implatados no aplicativo do cliente e dos restaurantes.
+- 📊 **Dispositivos IoT**: Criado um simulador de envio de sensores e/ou api para envio das informações do aplicativo do cliente e dos restaurantes.
 - 🛠️ **Apache Kafka**: Um sistema de mensagens escalável e tolerante a falhas para ingestão e processamento de fluxos de dados.
 - 🛠️ **Apache Spark**: Um poderoso motor para processamento e análise de dados em tempo real, garantindo geração rápida de insights.
 - 🛠️ **Docker**: Tecnologia de containerização para empacotar e implantar nossos componentes de pipeline com facilidade.
@@ -22,9 +22,9 @@ O projeto serve como um pipeline abrangente de transmissão de dados em tempo re
 
 ## 🌟 Exploração Detalhada
 
-1. **Ingestão de Dados**: Ingestão em tempo real de dados de dispositivos IoT (simulador em python) no Apache Kafka para processamento.
+1. **Ingestão de Dados**: Ingestão em tempo real de dados dos dispositivos (simulador em python) no Apache Kafka para processamento.
 2. **Processamento de Dados**: Utilização do Apache Spark para processamento e análise em tempo real dos fluxos de dados.
-3. **Armazenamento de Dados**: Armazenamento seguro dos dados processados no AWS S3 e Redshift para análise e visualização posterior.
+3. **Armazenamento de Dados**: Armazenamento seguro dos dados processados no AWS Lake Formation, AWS S3 e Redshift para análise e visualização posterior.
 4. **Visualização de Dados**: Visualização de insights e tendências usando o Power Bi, Looker Studio ou até mesmo o AWS QuickSight
 
 ## 📊 Análises com Power BI
