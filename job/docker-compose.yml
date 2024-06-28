@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 x-spark-common: &spark-common
   image: bitnami/spark:latest
@@ -13,7 +13,7 @@ x-spark-common: &spark-common
     SPARK_WORKER_MEMORY: 1g
     SPARK_MASTER_URL: spark://spark-master:7077
   networks:
-    - prathameshettam
+    - lopesnet
 
 services:
   zookeeper:
@@ -26,12 +26,12 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     healthcheck:
-      test: ['CMD', 'bash', '-c', "echo 'AreYouOK' | nc localhost 2181"]
-      interval:  10s
+      test: ["CMD", "bash", "-c", "echo 'AreYouOK' | nc localhost 2181"]
+      interval: 10s
       timeout: 5s
       retries: 5
     networks:
-      - prathameshettam
+      - lopesnet
   broker:
     image: confluentinc/cp-server:7.4.0
     hostname: broker
@@ -44,7 +44,7 @@ services:
       - "9101:9101"
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
       KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
@@ -59,12 +59,12 @@ services:
       KAFKA_CONFLUENT_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker:29092
       CONFLUENT_METRICS_REPORTER_TOPIC REPLICAS: 1
-      CONFLUENT_METRICS_ENABLE: 'false'
-      CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
+      CONFLUENT_METRICS_ENABLE: "false"
+      CONFLUENT_SUPPORT_CUSTOMER_ID: "anonymous"
     networks:
-      - prathameshettam
+      - lopesnet
     healthcheck:
-      test: ['CMD', 'bash', '-c', "nc -z localhost 9092"]
+      test: ["CMD", "bash", "-c", "nc -z localhost 9092"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -78,7 +78,7 @@ services:
       - "9090:8080"
       - "7077:7077"
     networks:
-      - prathameshettam
+      - lopesnet
 
   spark-worker-1:
     <<: *spark-common
@@ -90,4 +90,4 @@ services:
 #    <<: *spark-common
 
 networks:
-  prathameshettam:
+  lopesnet:
