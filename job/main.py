@@ -5,142 +5,72 @@ import uuid
 
 from confluent_kafka import SerializingProducer
 import simplejson as json
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 from producer import *
 
-SAOPAULO_COORDINATES = {"latitude": -23.5489, "longitude": -46.6388}
-RIOJANEIRO_COORDINATES = {"latitude": -22.9035,"longitude": -43.2096}
-
-# Calculate the movement increment
-LATITUDE_INCREMENT = (RIOJANEIRO_COORDINATES['latitude'] - SAOPAULO_COORDINATES['latitude']) / 100
-LONGITUDE_INCREMENT = (RIOJANEIRO_COORDINATES['longitude'] - SAOPAULO_COORDINATES['longitude']) / 100
-
 # Environment Variables for configuration
-
-KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS','localhost:9092')
-VEHICLE_TOPIC = os.getenv('VEHICLE_TOPIC','vehicle_data')
-GPS_TOPIC = os.getenv('GPS_TOPIC','gps_data')
-TRAFFIC_TOPIC = os.getenv('TRAFFIC_TOPIC','traffic_data')
-WEATHER_TOPIC = os.getenv('WEATHER_TOPIC', 'weather_data')
-EMERGENCY_TOPIC = os.getenv('EMERGENCY_TOPIC','emergency_data')
+KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
+ORDER_TOPIC = os.getenv('ORDER_TOPIC', 'order_data')
+STATUS_TOPIC = os.getenv('STATUS_TOPIC', 'status_data')
+REVIEW_TOPIC = os.getenv('REVIEW_TOPIC', 'review_data')
 
 start_time = datetime.now()
-start_location = SAOPAULO_COORDINATES.copy()
 
 random.seed(42)
+
 def get_next_time():
     global start_time
-    start_time += timedelta(seconds=random.randint(30,60))# update frequency
+    start_time += timedelta(seconds=random.randint(30, 60))  # update frequency
     return start_time
 
-
-def generate_gps_data(device_id,timestamp,vehicle_type='private'):
+def generate_order_data(order_id):
     return {
-        'id': uuid.uuid4(),
-        'deviceId': device_id,
-        'timestamp': timestamp,
-        'speed': random.uniform(0,40),
-        'direction': 'North-East',
-        'vehicleType': vehicle_type
-    }
-
-
-def simulate_vehicle_movement():
-    global start_location
-    #move towards Birhimgham
-    start_location["latitude"] += LATITUDE_INCREMENT
-    start_location['longitude'] += LONGITUDE_INCREMENT
-
-    #add some randomness to simulate actual road travel
-    start_location['latitude'] += random.uniform(-0.0005, 0.0005)
-    start_location['longitude'] += random.uniform(-0.0005, 0.0005)
-    return start_location
-
-def generate_vehicle_data(device_id):
-    location = simulate_vehicle_movement()
-
-    return {
-        'id': uuid.uuid4(),
-        'deviceId': device_id,
+        'id': order_id,
+        'customerId': str(uuid.uuid4()),
         'timestamp': get_next_time().isoformat(),
-        'location': (location['latitude'],location['longitude']),
-        'speed': random.uniform(10,40),
-        'direction': 'Sul-Norte',
-        'make':'BMW',
-        'model':'C500',
-        'year': 2024,
-        'fuelType': 'Hybrid'
+        'items': [{'itemId': str(uuid.uuid4()), 'quantity': random.randint(1, 5)} for _ in range(random.randint(1, 5))],
+        'totalPrice': round(random.uniform(10, 100), 2)
     }
 
-
-def generate_traffic_camera_data(device_id,timestamp,location,camera_id):
-    return{
-        'id': uuid.uuid4(),
-        'deviceId': device_id,
-        'cameraId': camera_id,
-        "location": location,
-        'timestamp': timestamp,
-        'snapshot': 'Base64EncodedString'
-    }
-
-def generate_weather_date(device_id,timestamp,location):
+def generate_status_data(order_id):
     return {
-        'id': uuid.uuid4(),
-        'deviceId': device_id,
-        "location":location,
-        'timestamp': timestamp,
-        'temperature': random.uniform(-5, 40), #Celsius
-        'weatherCondition': random.choice(['Sol','Nublado','Chuva','Tempestade']),
-        'precipitation':random.uniform(0,25),
-        'windSpeed': random.uniform(0,100),
-        'humidity': random.randint(0,100),#percentage
-        'airQualityIndex':random.uniform(0,500)#AQI Value goes here
-
+        'id': order_id,
+        'timestamp': get_next_time().isoformat(),
+        'status': random.choice(['Received', 'Preparing', 'Ready for Pickup', 'Out for Delivery', 'Delivered'])
     }
 
-def generate_emergency_incident_data(device_id,timestamp,location):
+def generate_review_data(order_id):
     return {
-        'id': uuid.uuid4(),
-        'deviceId': device_id,
-        'incidentId': uuid.uuid4(),
-        'type': random.choice(['Acidente','Fogo','Medico','Policia','None']),
-        "location": location,
-        'timestamp': timestamp,
-        'status': random.choice(['Ativo','Resolvido']),
-        'description': 'Descrição do incidente'
+        'id': order_id,
+        'timestamp': get_next_time().isoformat(),
+        'rating': random.randint(1, 5),
+        'comments': random.choice(['Excellent', 'Good', 'Average', 'Poor', 'Terrible'])
     }
 
-def simulate_journey(producer,device_id):
+def simulate_orders(producer):
     while True:
-        vehicle_data = generate_vehicle_data(device_id)
-        gps_data = generate_gps_data(device_id, vehicle_data['timestamp'])
-        traffic_camera_data = generate_traffic_camera_data(device_id,vehicle_data['timestamp'],vehicle_data["location"],'Nikon-Cam123')
-        weather_data = generate_weather_date(device_id,vehicle_data['timestamp'],vehicle_data['location'])
-        emergency_incident_data = generate_emergency_incident_data(device_id,vehicle_data['timestamp'],vehicle_data['location'])
+        order_id = str(uuid.uuid4())
+        order_data = generate_order_data(order_id)
+        status_data = generate_status_data(order_id)
+        review_data = generate_review_data(order_id)
 
-        if (vehicle_data['location'][0] >= RIOJANEIRO_COORDINATES['latitude']
-        and vehicle_data['location'][1] <= RIOJANEIRO_COORDINATES ['longitude']):
-            print('Veículo chegou ao Rio de Janeiro, simulação finalizada...')
-        produce_data_to_kafka(producer,VEHICLE_TOPIC, vehicle_data)
-        produce_data_to_kafka( producer, GPS_TOPIC, gps_data )
-        produce_data_to_kafka( producer, TRAFFIC_TOPIC, traffic_camera_data )
-        produce_data_to_kafka( producer, WEATHER_TOPIC, weather_data )
-        produce_data_to_kafka( producer, EMERGENCY_TOPIC, emergency_incident_data )
+        produce_data_to_kafka(producer, ORDER_TOPIC, order_data)
+        produce_data_to_kafka(producer, STATUS_TOPIC, status_data)
+        produce_data_to_kafka(producer, REVIEW_TOPIC, review_data)
 
         time.sleep(5)
 
 if __name__ == "__main__":
     producer_config = {
         'bootstrap.servers': KAFKA_BOOTSTRAP_SERVERS,
-        'error_cb':lambda err: print(f'Kafka error:{err}'),
+        'error_cb': lambda err: print(f'Kafka error: {err}'),
         'security.protocol': 'PLAINTEXT'
     }
     producer = SerializingProducer(producer_config)
 
     try:
-        simulate_journey(producer,'Vehicle-CodeWithYu-123')
-
+        simulate_orders(producer)
     except KeyboardInterrupt:
-        print('Simulatição finalizada pelo usuário')
+        print('Simulação finalizada pelo usuário')
     except Exception as e:
-        print(f"Unexcepted Error occured : {e}")
+        print(f"Erro inesperado ocorreu: {e}")

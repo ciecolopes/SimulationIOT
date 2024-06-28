@@ -1,8 +1,8 @@
-# 🚀 Pipeline de Stream de Dados em Tempo Real
+# 🚀 Pipeline de Stream de Dados em Tempo Real do aplicativo Pede Pronto
 
 ## Bem-vindo!
 
-Bem-vindo ao projeto de Pipeline de Stream de Dados de Ponta a Ponta!
+Bem-vindo ao projeto de Pipeline de Stream de Dados de Ponta a Ponta do aplicativo Pede Pronto, onde o cliente realiza o pedido no restaurante, o restaurante atualiza o status do pedido e o cliente no final faz a avaliação do pedido!
 
 ## Sobre o Projeto
 
@@ -10,7 +10,7 @@ O projeto serve como um pipeline abrangente de transmissão de dados em tempo re
 
 ## 🛠️ Componentes Principais
 
-- 📊 **Dispositivos IoT**: Criado um simulador de envio de sensores e dispositivos implatados nos veiculos.
+- 📊 **Dispositivos IoT**: Criado um simulador de envio de sensores e dispositivos implatados no aplicativo do cliente e dos restaurantes.
 - 🛠️ **Apache Kafka**: Um sistema de mensagens escalável e tolerante a falhas para ingestão e processamento de fluxos de dados.
 - 🛠️ **Apache Spark**: Um poderoso motor para processamento e análise de dados em tempo real, garantindo geração rápida de insights.
 - 🛠️ **Docker**: Tecnologia de containerização para empacotar e implantar nossos componentes de pipeline com facilidade.
@@ -22,7 +22,6 @@ O projeto serve como um pipeline abrangente de transmissão de dados em tempo re
 
 ## 🌟 Exploração Detalhada
 
-O pipeline embarca em uma jornada multifacetada, caracterizada por:
 
 1. **Ingestão de Dados**: Ingestão em tempo real de dados de dispositivos IoT (simulador em python) no Apache Kafka para processamento.
 2. **Processamento de Dados**: Utilização do Apache Spark para processamento e análise em tempo real dos fluxos de dados.
@@ -42,5 +41,5 @@ Conjunto de ferramentas de inteligência de negócios de próxima geração que 
 - **docker-compose.yml**: Configura o ambiente hospedando o broker Kafka, Zookeeper e nós Spark.
 - **main.py**: Simulador com a geração de dados, criação de tópicos Kafka (producer.py) e processamento inicial de dados.
 - **producer.py**: Function para criação de tópicos Kafka.
-- **spark-city.py**: Consome dados dos tópicos Kafka e os transmite para os buckets designados do Amazon S3.
+- **spark-pedepronto.py**: Consome dados dos tópicos Kafka e os transmite para os buckets designados do Amazon S3.
 
