@@ -10,7 +10,7 @@ O projeto serve como um pipeline abrangente de transmissão de dados em tempo re
 
 ## 🛠️ Componentes Principais
 
-- 📊 **Dispositivos IoT**: Criado um simulador de envio de sensores e/ou api para envio das informações do aplicativo do cliente e dos restaurantes.
+- 📊 **Dispositivos IoT**: Criado um simulador de envio de order e/ou api para envio das informações do aplicativo do cliente e dos restaurantes.
 - 🛠️ **Apache Kafka**: Um sistema de mensagens escalável e tolerante a falhas para ingestão e processamento de fluxos de dados.
 - 🛠️ **Apache Spark**: Um poderoso motor para processamento e análise de dados em tempo real, garantindo geração rápida de insights.
 - 🛠️ **Docker**: Tecnologia de containerização para empacotar e implantar nossos componentes de pipeline com facilidade.
@@ -23,7 +23,7 @@ O projeto serve como um pipeline abrangente de transmissão de dados em tempo re
 
 ## 🌟 Exploração Detalhada
 
-1. **Ingestão de Dados**: Ingestão em tempo real de dados dos dispositivos (simulador em python) no Apache Kafka para processamento.
+1. **Ingestão de Dados**: Ingestão em tempo real de dados dos dispositivos (simulador order em python) no Apache Kafka para processamento.
 2. **Processamento de Dados**: Utilização do Apache Spark para processamento e análise em tempo real dos fluxos de dados.
 3. **Armazenamento de Dados**: Armazenamento seguro dos dados processados no AWS Lake Formation, AWS S3 e Redshift para análise e visualização posterior.
 4. **Visualização de Dados**: Visualização de insights e tendências usando o Power Bi, Looker Studio ou até mesmo o AWS QuickSight
@@ -48,6 +48,6 @@ Conjunto de ferramentas de inteligência de negócios de próxima geração que 
 
 - **docker-compose.yml**: Configura o ambiente hospedando o broker Kafka, Zookeeper e nós Spark.
 - **config.py**: Access e Secret key para o AWS S3.
-- **main.py**: Simulador com a geração de dados, criação de tópicos Kafka (producer.py) e processamento inicial de dados.
+- **main.py**: Simulador com a geração de dados (order), criação de tópicos Kafka (producer.py) e processamento inicial de dados.
 - **producer.py**: Function para criação de tópicos Kafka.
 - **spark-pedepronto.py**: Consome dados dos tópicos Kafka e os transmite para os buckets designados do AWS S3.
