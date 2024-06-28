@@ -49,6 +49,7 @@ def main():
                 .option('kafka.bootstrap.servers', 'broker:29092')
                 .option('subscribe', topic)
                 .option('startingOffsets', 'earliest')
+              # micro-batch  .option('maxOffsetsPerTrigger', 1000)  # Limita a leitura a 1000 registros por micro-batch
                 .load()
                 .selectExpr('CAST(value AS STRING)')
                 .select(from_json(col('value'), schema).alias('data'))
@@ -69,12 +70,12 @@ def main():
     reviewDF = read_kafka_topic('review_data', reviewSchema).alias('review')
 
     # Write streams to S3
-    query1 = streamWriter(orderDF, 's3a://spark-streaming-dataa/checkpoints/order_data',
-                          's3a://spark-streaming-dataa/data/order_data')
-    query2 = streamWriter(statusDF, 's3a://spark-streaming-dataa/checkpoints/status_data',
-                          's3a://spark-streaming-dataa/data/status_data')
-    query3 = streamWriter(reviewDF, 's3a://spark-streaming-dataa/checkpoints/review_data',
-                          's3a://spark-streaming-dataa/data/review_data')
+    query1 = streamWriter(orderDF, 's3a://spark-streaming-data/checkpoints/order_data',
+                          's3a://spark-streaming-data/data/raw/order_data')
+    query2 = streamWriter(statusDF, 's3a://spark-streaming-data/checkpoints/status_data',
+                          's3a://spark-streaming-data/data/raw/status_data')
+    query3 = streamWriter(reviewDF, 's3a://spark-streaming-data/checkpoints/review_data',
+                          's3a://spark-streaming-data/data/raw/review_data')
 
     query1.awaitTermination()
     query2.awaitTermination()

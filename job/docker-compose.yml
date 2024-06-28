@@ -88,6 +88,17 @@ services:
 #    <<: *spark-common
 #  spark-worker-4:
 #    <<: *spark-common
-
+  api:
+    build: .
+    container_name: api
+    ports:
+      - "5000:5000"
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: "broker:29092"
+      STATUS_TOPIC: "status_data"
+      REVIEW_TOPIC: "review_data"
+    networks:
+      - lopesnet
+      
 networks:
   lopesnet:
